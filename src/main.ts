@@ -5,6 +5,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+<<<<<<< Updated upstream
   const whitelist = [
     'http://192.168.43.64:8080',
     'http://192.168.0.105:8080',
@@ -32,3 +33,16 @@ async function bootstrap() {
 }
 
 bootstrap();
+=======
+  app.enableCors({
+    origin: '*',  // Allow all origins (for dev only; restrict in prod)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  });
+
+  await app.listen(3000, '0.0.0.0'); // Listen on all network interfaces
+  console.log('Server running on http://0.0.0.0:3000');
+}
+
+bootstrap().catch(console.error);
+>>>>>>> Stashed changes
